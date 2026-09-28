@@ -1,0 +1,62 @@
+[
+  {
+    "defense": "IntentFlow (IF-Hardened)",
+    "na": 20,
+    "nb": 20,
+    "asr": 0.0,
+    "asr_ci_lower": 0.0,
+    "asr_ci_upper": 16.1,
+    "btsr": 75.0,
+    "fbr": 25.0
+  },
+  {
+    "defense": "TaskShield",
+    "na": 20,
+    "nb": 20,
+    "asr": 95.0,
+    "asr_ci_lower": 76.4,
+    "asr_ci_upper": 99.1,
+    "btsr": 95.0,
+    "fbr": 5.0
+  },
+  {
+    "defense": "Progent",
+    "na": 20,
+    "nb": 20,
+    "asr": 5.0,
+    "asr_ci_lower": 0.9,
+    "asr_ci_upper": 23.6,
+    "btsr": 100.0,
+    "fbr": 0.0
+  },
+  {
+    "defense": "ClawGuard",
+    "na": 20,
+    "nb": 20,
+    "asr": 90.0,
+    "asr_ci_lower": 69.9,
+    "asr_ci_upper": 97.2,
+    "btsr": 75.0,
+    "fbr": 25.0
+  },
+  {
+    "defense": "CaMeL",
+    "na": 20,
+    "nb": 20,
+    "asr": 0.0,
+    "asr_ci_lower": 0.0,
+    "asr_ci_upper": 16.1,
+    "btsr": 75.0,
+    "fbr": 25.0
+  },
+  {
+    "defense": "PACT",
+    "na": 20,
+    "nb": 20,
+    "asr": 75.0,
+    "asr_ci_lower": 53.1,
+    "asr_ci_upper": 88.8,
+    "btsr": 100.0,
+    "fbr": 0.0
+  }
+]

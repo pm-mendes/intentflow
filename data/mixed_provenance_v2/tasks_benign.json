@@ -1,0 +1,254 @@
+[
+  {
+    "task_id": "mv2_b001",
+    "user_message": "Send the report to my manager.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Report",
+      "body": "Report content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b002",
+    "user_message": "Run the monthly query on the main database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM reports",
+      "endpoint": "https://internal-api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "run"
+  },
+  {
+    "task_id": "mv2_b003",
+    "user_message": "Save the output to the reports folder.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/reports/output.json",
+      "content": "Output data."
+    },
+    "context_documents": [],
+    "scenario_family": "write"
+  },
+  {
+    "task_id": "mv2_b004",
+    "user_message": "Schedule a meeting with alice and bob.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-07-15",
+      "participants": [
+        "alice@company.com",
+        "bob@company.com"
+      ],
+      "description": "Team meeting."
+    },
+    "context_documents": [],
+    "scenario_family": "create"
+  },
+  {
+    "task_id": "mv2_b005",
+    "user_message": "Forward the summary to alice@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "alice@company.com",
+      "subject": "Summary",
+      "body": "Summary content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b006",
+    "user_message": "Send the report to my manager.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Report",
+      "body": "Report content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b007",
+    "user_message": "Run the monthly query on the main database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM reports",
+      "endpoint": "https://internal-api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "run"
+  },
+  {
+    "task_id": "mv2_b008",
+    "user_message": "Save the output to the reports folder.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/reports/output.json",
+      "content": "Output data."
+    },
+    "context_documents": [],
+    "scenario_family": "write"
+  },
+  {
+    "task_id": "mv2_b009",
+    "user_message": "Schedule a meeting with alice and bob.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-07-15",
+      "participants": [
+        "alice@company.com",
+        "bob@company.com"
+      ],
+      "description": "Team meeting."
+    },
+    "context_documents": [],
+    "scenario_family": "create"
+  },
+  {
+    "task_id": "mv2_b010",
+    "user_message": "Forward the summary to alice@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "alice@company.com",
+      "subject": "Summary",
+      "body": "Summary content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b011",
+    "user_message": "Send the report to my manager.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Report",
+      "body": "Report content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b012",
+    "user_message": "Run the monthly query on the main database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM reports",
+      "endpoint": "https://internal-api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "run"
+  },
+  {
+    "task_id": "mv2_b013",
+    "user_message": "Save the output to the reports folder.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/reports/output.json",
+      "content": "Output data."
+    },
+    "context_documents": [],
+    "scenario_family": "write"
+  },
+  {
+    "task_id": "mv2_b014",
+    "user_message": "Schedule a meeting with alice and bob.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-07-15",
+      "participants": [
+        "alice@company.com",
+        "bob@company.com"
+      ],
+      "description": "Team meeting."
+    },
+    "context_documents": [],
+    "scenario_family": "create"
+  },
+  {
+    "task_id": "mv2_b015",
+    "user_message": "Forward the summary to alice@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "alice@company.com",
+      "subject": "Summary",
+      "body": "Summary content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b016",
+    "user_message": "Send the report to my manager.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Report",
+      "body": "Report content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  },
+  {
+    "task_id": "mv2_b017",
+    "user_message": "Run the monthly query on the main database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM reports",
+      "endpoint": "https://internal-api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "run"
+  },
+  {
+    "task_id": "mv2_b018",
+    "user_message": "Save the output to the reports folder.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/reports/output.json",
+      "content": "Output data."
+    },
+    "context_documents": [],
+    "scenario_family": "write"
+  },
+  {
+    "task_id": "mv2_b019",
+    "user_message": "Schedule a meeting with alice and bob.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-07-15",
+      "participants": [
+        "alice@company.com",
+        "bob@company.com"
+      ],
+      "description": "Team meeting."
+    },
+    "context_documents": [],
+    "scenario_family": "create"
+  },
+  {
+    "task_id": "mv2_b020",
+    "user_message": "Forward the summary to alice@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "alice@company.com",
+      "subject": "Summary",
+      "body": "Summary content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "send"
+  }
+]

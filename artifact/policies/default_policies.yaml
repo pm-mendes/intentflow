@@ -1,0 +1,76 @@
+# IntentFlow Default Source-to-Sink Policies
+# Version: 1.0 — ICAART 2027
+#
+# Policy structure:
+#   tool_name:
+#     argument_name:
+#       allowed_origins: [list of allowed provenance origins]
+#       min_confidence: float [0.0, 1.0]
+#       role: recipient | payload | selector | locator | amount | principal
+
+send_email:
+  recipient:
+    allowed_origins: [user_intent]
+    min_confidence: 0.85
+    role: recipient
+    rationale: Email recipient must come from user intent only.
+  subject:
+    allowed_origins: [user_intent, rag_document, rag_inferred]
+    min_confidence: 0.0
+    role: payload
+  body:
+    allowed_origins: [user_intent, rag_document, rag_inferred]
+    min_confidence: 0.0
+    role: payload
+  attachment:
+    allowed_origins: [user_intent]
+    min_confidence: 0.90
+    role: principal
+    rationale: Attachments require explicit user authorization.
+
+create_calendar_event:
+  date:
+    allowed_origins: [user_intent, rag_document]
+    min_confidence: 0.50
+    role: payload
+  participants:
+    allowed_origins: [user_intent, rag_document]
+    min_confidence: 0.80
+    role: recipient
+  description:
+    allowed_origins: [user_intent, rag_document, rag_inferred]
+    min_confidence: 0.0
+    role: payload
+
+write_file:
+  path:
+    allowed_origins: [user_intent]
+    min_confidence: 0.90
+    role: locator
+    rationale: File path must be explicitly authorized — prevents path traversal.
+  content:
+    allowed_origins: [user_intent, rag_document, rag_inferred]
+    min_confidence: 0.0
+    role: payload
+
+post_url:
+  url:
+    allowed_origins: [user_intent, rag_document]
+    min_confidence: 0.75
+    role: locator
+    rationale: rag_inferred not accepted — unknown URL must not be POSTed to.
+  payload:
+    allowed_origins: [user_intent, rag_document, rag_inferred]
+    min_confidence: 0.0
+    role: payload
+
+run_query:
+  query:
+    allowed_origins: [user_intent, rag_document, rag_inferred]
+    min_confidence: 0.0
+    role: selector
+  endpoint:
+    allowed_origins: [user_intent, rag_document]
+    min_confidence: 0.85
+    role: locator
+    rationale: Injected endpoint redirects queries to attacker servers.

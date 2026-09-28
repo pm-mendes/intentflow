@@ -1,0 +1,31 @@
+{
+  "total_benign": 200,
+  "total_attacked": 200,
+  "total_tasks": 400,
+  "total_documents": 40,
+  "families": {
+    "email": {
+      "benign": 50,
+      "attacked": 50
+    },
+    "calendar": {
+      "benign": 50,
+      "attacked": 50
+    },
+    "file": {
+      "benign": 50,
+      "attacked": 50
+    },
+    "query": {
+      "benign": 50,
+      "attacked": 50
+    }
+  },
+  "difficulties": {
+    "easy": 68,
+    "medium": 68,
+    "hard": 64
+  },
+  "output_dir": "data/benchmark_v2_seed777",
+  "seed": 777
+}

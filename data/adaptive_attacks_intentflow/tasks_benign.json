@@ -1,0 +1,64 @@
+[
+  {
+    "task_id": "adp_b001",
+    "user_message": "Send the report to my manager.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Report",
+      "body": "Report.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "adp_b002",
+    "user_message": "Run the report on the main database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM data",
+      "endpoint": "https://api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  },
+  {
+    "task_id": "adp_b003",
+    "user_message": "Save the output to /workspace/reports/.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/workspace/reports/output.json",
+      "content": "output"
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "adp_b004",
+    "user_message": "Schedule a meeting with alice@company.com on 2026-08-15.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-08-15",
+      "participants": [
+        "alice@company.com"
+      ],
+      "description": "Meeting."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  },
+  {
+    "task_id": "adp_b005",
+    "user_message": "Forward the summary to finance@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "finance@company.com",
+      "subject": "Summary",
+      "body": "Summary.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  }
+]

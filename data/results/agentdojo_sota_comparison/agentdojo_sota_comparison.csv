@@ -1,0 +1,7 @@
+defense,na,nb,asr,asr_ci_lower,asr_ci_upper,btsr,fbr
+IntentFlow (IF-Hardened),20,20,0.0,0.0,16.1,75.0,25.0
+TaskShield,20,20,95.0,76.4,99.1,95.0,5.0
+Progent,20,20,5.0,0.9,23.6,100.0,0.0
+ClawGuard,20,20,90.0,69.9,97.2,75.0,25.0
+CaMeL,20,20,0.0,0.0,16.1,75.0,25.0
+PACT,20,20,75.0,53.1,88.8,100.0,0.0

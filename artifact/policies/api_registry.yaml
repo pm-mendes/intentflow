@@ -1,0 +1,122 @@
+# IntentFlow API Registry — Production Default
+# Registry+Confirm is the safe default for endpoint arguments.
+# unresolved: true -> Confirm if no match found
+# unknown_external: block -> Block if external and not in registry
+
+metadata:
+  version: "1.0"
+  owner: "security-platform"
+  policy: "registry_confirm"
+  default_unresolved: "confirm"
+  default_unknown_external: "block"
+
+endpoints:
+  reporting_db:
+    aliases: ["database", "main database", "main db", "the database",
+              "reporting database", "primary database", "company database",
+              "db", "reporting db"]
+    canonical_url: "https://internal-api.company.com/db"
+    owner: "data-platform"
+    risk: "high"
+    allowed_tools: ["run_query", "export_report"]
+    confirmation_required_if_unresolved: true
+    allowed_methods: ["SELECT"]
+
+  hr_system:
+    aliases: ["hr system", "hr", "human resources", "hr database",
+              "headcount", "headcount query", "personnel system"]
+    canonical_url: "https://internal-api.company.com/hr"
+    owner: "hr-team"
+    risk: "high"
+    allowed_tools: ["run_query"]
+    confirmation_required_if_unresolved: true
+    allowed_methods: ["SELECT"]
+
+  finance_api:
+    aliases: ["finance api", "finance system", "finance database",
+              "financial system", "finance", "budget api"]
+    canonical_url: "https://internal-api.company.com/finance"
+    owner: "finance-team"
+    risk: "critical"
+    allowed_tools: ["run_query"]
+    confirmation_required_if_unresolved: true
+    allowed_methods: ["SELECT"]
+
+  sales_crm:
+    aliases: ["sales crm", "crm", "sales database", "sales system",
+              "sales pipeline", "pipeline", "sales data"]
+    canonical_url: "https://internal-api.company.com/sales"
+    owner: "sales-team"
+    risk: "medium"
+    allowed_tools: ["run_query", "post_url"]
+    confirmation_required_if_unresolved: false
+    allowed_methods: ["SELECT"]
+
+  analytics:
+    aliases: ["analytics", "analytics endpoint", "reporting api",
+              "metrics", "reporting", "trends", "user metrics",
+              "analytics dashboard", "metrics dashboard"]
+    canonical_url: "https://internal-api.company.com/analytics"
+    owner: "data-platform"
+    risk: "medium"
+    allowed_tools: ["run_query"]
+    confirmation_required_if_unresolved: false
+    allowed_methods: ["SELECT"]
+
+  audit_system:
+    aliases: ["audit system", "audit", "compliance database",
+              "audit log", "compliance", "compliance check",
+              "compliance audit", "audit trail"]
+    canonical_url: "https://internal-api.company.com/audit"
+    owner: "security-team"
+    risk: "high"
+    allowed_tools: ["run_query"]
+    confirmation_required_if_unresolved: true
+    allowed_methods: ["SELECT"]
+
+  iam:
+    aliases: ["iam", "identity", "permissions", "iam permissions",
+              "access control", "identity management"]
+    canonical_url: "https://internal-api.company.com/iam"
+    owner: "security-team"
+    risk: "critical"
+    allowed_tools: ["run_query"]
+    confirmation_required_if_unresolved: true
+    allowed_methods: ["SELECT"]
+
+  supply_chain:
+    aliases: ["supply chain", "supply", "inventory", "warehouse",
+              "logistics", "procurement"]
+    canonical_url: "https://internal-api.company.com/supply"
+    owner: "operations-team"
+    risk: "medium"
+    allowed_tools: ["run_query"]
+    confirmation_required_if_unresolved: false
+    allowed_methods: ["SELECT"]
+
+  ms_graph_mail:
+    aliases: ["microsoft graph mail", "graph mail", "exchange",
+              "outlook api", "mail api"]
+    canonical_url: "https://graph.microsoft.com/v1.0/me/sendMail"
+    owner: "it-team"
+    risk: "high"
+    allowed_tools: ["send_email"]
+    confirmation_required_if_unresolved: true
+
+  ms_graph_calendar:
+    aliases: ["microsoft graph calendar", "graph calendar",
+              "outlook calendar", "calendar api"]
+    canonical_url: "https://graph.microsoft.com/v1.0/me/events"
+    owner: "it-team"
+    risk: "medium"
+    allowed_tools: ["create_calendar_event"]
+    confirmation_required_if_unresolved: false
+
+  ms_graph_files:
+    aliases: ["microsoft graph files", "sharepoint", "onedrive",
+              "graph files", "file storage api"]
+    canonical_url: "https://graph.microsoft.com/v1.0/me/drive"
+    owner: "it-team"
+    risk: "high"
+    allowed_tools: ["write_file", "read_file"]
+    confirmation_required_if_unresolved: true

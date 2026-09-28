@@ -1,0 +1,177 @@
+{
+  "user": {
+    "value": "alice@company.com",
+    "field_type": "email",
+    "aliases": [
+      "me",
+      "myself",
+      "the user",
+      "I"
+    ]
+  },
+  "manager": {
+    "value": "manager@company.com",
+    "field_type": "email",
+    "aliases": [
+      "my manager",
+      "my boss",
+      "the manager",
+      "direct manager",
+      "line manager",
+      "my supervisor"
+    ]
+  },
+  "legal_team": {
+    "value": [
+      "legal-team@company.com"
+    ],
+    "field_type": "email_list",
+    "aliases": [
+      "legal team",
+      "legal",
+      "the legal team",
+      "legal department",
+      "lawyers",
+      "law team",
+      "legal counsel"
+    ]
+  },
+  "finance_team": {
+    "value": [
+      "finance@company.com"
+    ],
+    "field_type": "email_list",
+    "aliases": [
+      "finance team",
+      "finance",
+      "the finance team",
+      "finance department",
+      "accounting",
+      "accounts"
+    ]
+  },
+  "hr_team": {
+    "value": [
+      "hr@company.com"
+    ],
+    "field_type": "email_list",
+    "aliases": [
+      "hr team",
+      "hr",
+      "human resources",
+      "the hr team",
+      "people team",
+      "people ops"
+    ]
+  },
+  "security_team": {
+    "value": [
+      "security@company.com"
+    ],
+    "field_type": "email_list",
+    "aliases": [
+      "security team",
+      "security",
+      "infosec",
+      "the security team",
+      "ciso",
+      "cyber team"
+    ]
+  },
+  "ceo": {
+    "value": "ceo@company.com",
+    "field_type": "email",
+    "aliases": [
+      "the ceo",
+      "ceo",
+      "chief executive",
+      "chief executive officer"
+    ]
+  },
+  "cto": {
+    "value": "cto@company.com",
+    "field_type": "email",
+    "aliases": [
+      "the cto",
+      "cto",
+      "chief technology officer",
+      "tech lead"
+    ]
+  },
+  "alice": {
+    "value": "alice@company.com",
+    "field_type": "email",
+    "aliases": [
+      "alice",
+      "alice from the team",
+      "project lead alice"
+    ]
+  },
+  "bob": {
+    "value": "bob@company.com",
+    "field_type": "email",
+    "aliases": [
+      "bob",
+      "bob from the team",
+      "bob the developer"
+    ]
+  },
+  "project_lead": {
+    "value": "alice@company.com",
+    "field_type": "email",
+    "aliases": [
+      "project lead",
+      "the project lead",
+      "project manager",
+      "pm",
+      "the pm"
+    ]
+  },
+  "reporting_db": {
+    "value": "https://internal-api.company.com/db",
+    "field_type": "endpoint",
+    "aliases": [
+      "reporting database",
+      "reporting db",
+      "main database",
+      "main db",
+      "the database",
+      "database",
+      "primary database",
+      "company database",
+      "our database"
+    ]
+  },
+  "hr_system": {
+    "value": "https://internal-api.company.com/hr",
+    "field_type": "endpoint",
+    "aliases": [
+      "hr system",
+      "hr database",
+      "hr endpoint",
+      "people system"
+    ]
+  },
+  "finance_api": {
+    "value": "https://internal-api.company.com/finance",
+    "field_type": "endpoint",
+    "aliases": [
+      "finance api",
+      "finance system",
+      "finance database",
+      "financial system",
+      "finance endpoint"
+    ]
+  },
+  "reports_folder": {
+    "value": "/reports/",
+    "field_type": "path",
+    "aliases": [
+      "reports folder",
+      "the reports folder",
+      "report directory",
+      "output folder",
+      "reports directory"
+    ]
+  }
+}

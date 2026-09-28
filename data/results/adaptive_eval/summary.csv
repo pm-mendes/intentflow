@@ -1,0 +1,3 @@
+name,na,nb,asr,btsr,fbr
+Official AgentDojo Subset (N=20+20),20,20,0.0,75.0,25.0
+"Adaptive Attacks (6 families, N=42)",42,5,9.5,80.0,20.0

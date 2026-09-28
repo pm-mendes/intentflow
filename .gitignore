@@ -1,0 +1,49 @@
+# Environnements Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+dist/
+build/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+
+# Secrets — ne JAMAIS commiter
+.env
+
+# NOTE: data/results/*.jsonl|csv|json are intentionally NOT ignored here —
+# they are the artifact's decision logs and metrics (README/checklist claim
+# them explicitly). Only exclude raw debug traces, not structured outputs.
+data/results/*.log
+
+# Artefacts de modèles
+*.pt
+*.bin
+*.pkl
+
+# Notebooks (checkpoints)
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Couverture de tests
+.coverage
+htmlcov/
+.pytest_cache/
+coverage.xml
+
+# LaTeX build artifacts (paper/icaart2027/) — keep only source + final PDF
+paper/icaart2027/*.aux
+paper/icaart2027/*.bbl
+paper/icaart2027/*.blg
+paper/icaart2027/*.log
+paper/icaart2027/*.out

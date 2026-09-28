@@ -1,0 +1,13 @@
+{
+  "total_benign": 50,
+  "total_attacked": 50,
+  "total_documents": 400,
+  "domains": [
+    "email_client",
+    "calendar_app",
+    "file_manager",
+    "web_query"
+  ],
+  "inspiration": "AgentDojo (Debenedetti et al., NeurIPS 2024)",
+  "note": "Independently generated tasks inspired by AgentDojo workflow structure."
+}

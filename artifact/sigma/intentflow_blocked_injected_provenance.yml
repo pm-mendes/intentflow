@@ -1,0 +1,25 @@
+title: IntentFlow - Argument-Level Block on Injected-Document Provenance
+id: intentflow-block-injected-provenance
+status: stable
+description: >
+  Fires when the IntentFlow mediator blocks a tool-call argument whose value
+  traces to an injected/untrusted document. Under Lemma 1 (no-allow-without-
+  authorization), this is an unconditional invariant, not a heuristic: a hit
+  means a retrieval-to-action attack attempt was intercepted before tool
+  execution, so it is a high-precision signal for the SOC (backtested count
+  below, not a fabricated estimate).
+references:
+  - Intent-Conditioned Argument Mediation for Retrieval-to-Action Security in
+    Agentic RAG (ICAART 2027), Section 3.2 (Lemma 1) and Section 6 (artifact)
+logsource:
+  product: intentflow
+  service: mediator
+detection:
+  selection:
+    decision: block
+    provenance_origin: injected_document
+  condition: selection
+level: high
+tags:
+  - attack.execution
+  - attack.t1195  # supply_chain / injected-content analogue

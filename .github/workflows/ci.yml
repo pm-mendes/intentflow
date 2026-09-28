@@ -1,0 +1,47 @@
+name: CI
+
+# Mirrors .gitlab-ci.yml (the CI of record for this project); kept in sync
+# so the anonymized GitHub mirror used for artifact review is independently
+# checkable without a GitLab account.
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install poetry
+      - run: poetry install --no-ansi
+      - run: poetry run ruff check src/ tests/
+      - run: poetry run ruff format --check src/ tests/
+      - name: mypy (advisory, non-blocking)
+        run: poetry run mypy src/ || true
+
+  test:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ""
+      LOG_LEVEL: "WARNING"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install poetry
+      - run: poetry install --no-ansi
+      # Phase 0.6: tests/integration/ was empty until now (ToolMediator.execute()
+      # end-to-end had zero automated coverage) — run it alongside tests/unit/
+      # so it doesn't silently stay unexercised in CI.
+      - run: poetry run pytest tests/unit/ tests/integration/ -v --cov=src --cov-report=xml --cov-report=term-missing
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml

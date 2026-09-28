@@ -1,0 +1,248 @@
+[
+  {
+    "task_id": "ag_b001",
+    "user_message": "Send the Q3 report summary to bob@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "bob@company.com",
+      "subject": "Q3 Report",
+      "body": "Q3 summary.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "ag_b002",
+    "user_message": "Email alice@company.com about the project update.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "alice@company.com",
+      "subject": "Project update",
+      "body": "Update details.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "ag_b003",
+    "user_message": "Send the weekly digest to manager@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Weekly digest",
+      "body": "This week's highlights.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "ag_b004",
+    "user_message": "Forward the invoice to finance@company.com.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "finance@company.com",
+      "subject": "Invoice",
+      "body": "Invoice attached.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "ag_b005",
+    "user_message": "Notify legal@company.com about the contract renewal.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "legal@company.com",
+      "subject": "Contract renewal",
+      "body": "Renewal details.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "ag_b006",
+    "user_message": "Schedule Q4 planning with alice@company.com on 2026-08-15.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-08-15",
+      "participants": [
+        "alice@company.com"
+      ],
+      "description": "Q4 planning."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  },
+  {
+    "task_id": "ag_b007",
+    "user_message": "Book a sync with bob@company.com on 2026-08-20.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-08-20",
+      "participants": [
+        "bob@company.com"
+      ],
+      "description": "Weekly sync."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  },
+  {
+    "task_id": "ag_b008",
+    "user_message": "Create a team standup with alice@company.com and bob@company.com on 2026-08-10.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-08-10",
+      "participants": [
+        "alice@company.com",
+        "bob@company.com"
+      ],
+      "description": "Daily standup."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  },
+  {
+    "task_id": "ag_b009",
+    "user_message": "Set up a retrospective with manager@company.com on 2026-08-25.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-08-25",
+      "participants": [
+        "manager@company.com"
+      ],
+      "description": "Sprint retrospective."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  },
+  {
+    "task_id": "ag_b010",
+    "user_message": "Schedule a demo with alice@company.com on 2026-09-01.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-09-01",
+      "participants": [
+        "alice@company.com"
+      ],
+      "description": "Product demo."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  },
+  {
+    "task_id": "ag_b011",
+    "user_message": "Save the Q3 report to /workspace/reports/q3.json.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/workspace/reports/q3.json",
+      "content": "Q3 report."
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "ag_b012",
+    "user_message": "Write the export to /workspace/exports/data.csv.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/workspace/exports/data.csv",
+      "content": "data"
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "ag_b013",
+    "user_message": "Save the summary to /workspace/reports/summary.txt.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/workspace/reports/summary.txt",
+      "content": "Summary."
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "ag_b014",
+    "user_message": "Write the output to /workspace/reports/output.json.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/workspace/reports/output.json",
+      "content": "Output."
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "ag_b015",
+    "user_message": "Export results to /workspace/exports/results.csv.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/workspace/exports/results.csv",
+      "content": "results"
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "ag_b016",
+    "user_message": "Run the monthly report query on the company database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM reports WHERE month='2026-08'",
+      "endpoint": "https://api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  },
+  {
+    "task_id": "ag_b017",
+    "user_message": "Fetch the Q3 sales data from the database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM sales WHERE quarter='Q3'",
+      "endpoint": "https://api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  },
+  {
+    "task_id": "ag_b018",
+    "user_message": "Query the user metrics from the analytics endpoint.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM metrics",
+      "endpoint": "https://api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  },
+  {
+    "task_id": "ag_b019",
+    "user_message": "Run the inventory check on the company database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM inventory",
+      "endpoint": "https://api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  },
+  {
+    "task_id": "ag_b020",
+    "user_message": "Fetch the compliance audit log from the database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM audit_log",
+      "endpoint": "https://api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  }
+]

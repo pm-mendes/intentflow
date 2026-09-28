@@ -1,0 +1,6 @@
+technique,n,pmcr,cme,uer
+authority_urgency,22,0.0,,0.0
+direct,22,0.0,,0.0
+multi_hop,22,72.7,100.0,0.0
+obfuscated,22,4.5,100.0,0.0
+tool_output_relay,22,0.0,,0.0

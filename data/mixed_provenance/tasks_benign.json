@@ -1,0 +1,52 @@
+[
+  {
+    "task_id": "mix_b001",
+    "user_message": "Send the report to my manager.",
+    "expected_tool": "send_email",
+    "expected_arguments": {
+      "recipient": "manager@company.com",
+      "subject": "Report",
+      "body": "Content.",
+      "attachment": null
+    },
+    "context_documents": [],
+    "scenario_family": "email"
+  },
+  {
+    "task_id": "mix_b002",
+    "user_message": "Run the query on the main database.",
+    "expected_tool": "run_query",
+    "expected_arguments": {
+      "query": "SELECT * FROM data",
+      "endpoint": "https://internal-api.company.com/db"
+    },
+    "context_documents": [],
+    "scenario_family": "query"
+  },
+  {
+    "task_id": "mix_b003",
+    "user_message": "Save the report to the reports folder.",
+    "expected_tool": "write_file",
+    "expected_arguments": {
+      "path": "/reports/output.json",
+      "content": "Report."
+    },
+    "context_documents": [],
+    "scenario_family": "file"
+  },
+  {
+    "task_id": "mix_b004",
+    "user_message": "Schedule a meeting with alice and bob.",
+    "expected_tool": "create_calendar_event",
+    "expected_arguments": {
+      "date": "2026-07-15",
+      "participants": [
+        "alice@company.com",
+        "bob@company.com"
+      ],
+      "description": "Team meeting."
+    },
+    "context_documents": [],
+    "scenario_family": "calendar"
+  }
+]
