@@ -20,6 +20,14 @@ authors:
     affiliation: "CEDRIC, Conservatoire National des Arts et Métiers (Cnam)"
     orcid: "https://orcid.org/0000-0002-0979-1289"
 version: icaart2027-camera-ready
+doi: 10.5281/zenodo.24233094
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24233094
+    description: "Zenodo archive of the tag icaart2027-camera-ready"
+  - type: doi
+    value: 10.5281/zenodo.24233093
+    description: "Zenodo concept DOI (all versions)"
 date-released: "2026-11-14"
 license: MIT
 repository-code: "https://github.com/pm-mendes/intentflow"

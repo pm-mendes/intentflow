@@ -1,8 +1,13 @@
 # Changelog
 
+## After the tag
+
+- Zenodo DOI added to README.md and CITATION.cff: 10.5281/zenodo.24233094 (archive of the tag, identical to
+  it), concept DOI 10.5281/zenodo.24233093.
+
 ## icaart2027-camera-ready (November 2026)
 
-Version cited by the ICAART 2027 camera-ready.
+Version cited by the ICAART 2027 camera-ready. Zenodo: 10.5281/zenodo.24233094.
 
 - **Security fix, value–intent matching** (`provenance/tracker.py::_matches_intent_parameters`): a value now
   matches the intent contract only if it equals an authorized value after role-specific normalization

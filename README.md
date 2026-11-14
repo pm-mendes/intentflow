@@ -1,5 +1,7 @@
 # IntentFlow
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24233094.svg)](https://doi.org/10.5281/zenodo.24233094)
+
 Research artifact of the paper
 
 > **Intent-Conditioned Argument Mediation for Tool-Using LLM Agents: Blocking Trusted-but-Unauthorized Arguments**
@@ -13,7 +15,9 @@ intent contract built from the user's request and against the provenance of the 
 document) but are not the ones the user asked for.
 
 This repository contains the implementation, the benchmarks, the decision logs and the scripts behind every
-number of the paper. The version cited by the paper is the tag `icaart2027-camera-ready`.
+number of the paper. The version cited by the paper is the tag `icaart2027-camera-ready`, archived on Zenodo:
+[10.5281/zenodo.24233094](https://doi.org/10.5281/zenodo.24233094) (this version) ;
+[10.5281/zenodo.24233093](https://doi.org/10.5281/zenodo.24233093) (all versions).
 
 ## Benchmarks (637 tasks)
 
@@ -142,6 +146,15 @@ poetry run pytest tests/
   booktitle = {Proceedings of the 19th International Conference on Agents and Artificial Intelligence (ICAART 2027)},
   publisher = {SciTePress},
   year      = {2027}
+}
+
+@software{ameur2026intentflow_artifact,
+  author    = {Ameur, Yulliwas and Mendes, Pedro and Bouzefrane, Samia},
+  title     = {{IntentFlow}: artifact of the {ICAART} 2027 paper on intent-conditioned argument mediation},
+  version   = {icaart2027-camera-ready},
+  publisher = {Zenodo},
+  year      = {2026},
+  doi       = {10.5281/zenodo.24233094}
 }
 ```
 
