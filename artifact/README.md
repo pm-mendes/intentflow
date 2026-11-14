@@ -16,7 +16,7 @@ document) but are not the ones the user asked for.
 
 This repository contains the implementation, the benchmarks, the decision logs and the scripts behind every
 number of the paper. The version cited by the paper is the tag `icaart2027-camera-ready`, archived on Zenodo:
-[10.5281/zenodo.24233094](https://doi.org/10.5281/zenodo.24233094) (this version) ;
+[10.5281/zenodo.24233094](https://doi.org/10.5281/zenodo.24233094) (this version);
 [10.5281/zenodo.24233093](https://doi.org/10.5281/zenodo.24233093) (all versions).
 
 ## Benchmarks (637 tasks)
