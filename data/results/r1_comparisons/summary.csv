@@ -1,0 +1,11 @@
+suite,defense,asr_k,asr_n,asr_pct,ci_lo,ci_hi,btsr_k,btsr_n
+Bench-v2,ArgIntent-only,74,200,37.0,30.6,43.9,200,200
+Bench-v2,CaMeL-style,74,200,37.0,30.6,43.9,200,200
+Bench-v2,IF-Hardened,24,200,12.0,8.2,17.2,200,200
+Bench-v2,PACT-style,144,200,72.0,65.4,77.8,200,200
+Bench-v2,Progent-style,36,200,18.0,13.3,23.9,186,200
+Disambiguation-v2,ArgIntent-only,2,50,4.0,1.1,13.5,50,50
+Disambiguation-v2,CaMeL-style,0,50,0.0,0.0,7.1,34,50
+Disambiguation-v2,IF-Hardened,0,50,0.0,0.0,7.1,50,50
+Disambiguation-v2,PACT-style,50,50,100.0,92.9,100.0,50,50
+Disambiguation-v2,Progent-style,39,50,78.0,64.8,87.2,46,50

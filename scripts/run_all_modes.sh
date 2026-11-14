@@ -78,7 +78,7 @@ case "$MODE" in
     poetry run python -m intentflow.experiments.label_noise
     poetry run python -m intentflow.experiments.run_mixed_provenance
     poetry run python -m intentflow.experiments.policy_fuzzing_extended
-    python scripts/generate_metrics_manifest.py
+    PYTHONPATH=src python scripts/check_paper_numbers.py
     echo ""
     echo "Expected runtime: ~90 min"
     echo "Estimated API cost: ~\$0.20 (gpt-4o-mini)"

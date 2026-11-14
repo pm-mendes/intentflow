@@ -34,7 +34,8 @@ create_calendar_event:
     min_confidence: 0.50
     role: payload
   participants:
-    allowed_origins: [user_intent, rag_document]
+    # user_intent only since the participants-policy fix of 28/09/2026 (same as PolicyEngine)
+    allowed_origins: [user_intent]
     min_confidence: 0.80
     role: recipient
   description:

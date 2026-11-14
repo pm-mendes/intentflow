@@ -1,0 +1,96 @@
+paper_location,quantity,paper_value,recomputed_value,match,result_file,script
+Table 2,Bench-v2: attacked / benign / total,200 / 250 / 450,200 / 250 / 450,yes,data/benchmark_v2/,src/intentflow/data/*
+Table 2,Disambiguation-v2: attacked / benign / total,50 / 50 / 100,50 / 50 / 100,yes,data/disambiguation_v2/,src/intentflow/data/*
+Table 2,AgentDojo-derived: attacked / benign / total,20 / 20 / 40,20 / 20 / 40,yes,data/agentdojo_official/,src/intentflow/data/*
+Table 2,Adaptive white-box: attacked / benign / total,42 / 5 / 47,42 / 5 / 47,yes,data/adaptive_attacks_intentflow/,src/intentflow/data/*
+Table 2,Total tasks,637,637,yes,data/*/tasks_*.json,src/intentflow/data/*
+Table 3,B0: ASR,100.0%,100.0%,yes,data/results/benchmark_v2/decisions_B0.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B0: 95% CI,"[98.1, 100.0]","[98.1, 100.0]",yes,data/results/benchmark_v2/decisions_B0.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B0: BTSR,100%,100%,yes,data/results/benchmark_v2/decisions_B0.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B3: ASR,100.0%,100.0%,yes,data/results/benchmark_v2/decisions_B3.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B3: 95% CI,"[98.1, 100.0]","[98.1, 100.0]",yes,data/results/benchmark_v2/decisions_B3.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B3: BTSR,100%,100%,yes,data/results/benchmark_v2/decisions_B3.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B4 action-level intent: ASR,100.0%,100.0%,yes,data/results/benchmark_v2/decisions_B4_full.jsonl,scripts/run_b4_benchv2.py
+Table 3,B4 action-level intent: 95% CI,"[98.1, 100.0]","[98.1, 100.0]",yes,data/results/benchmark_v2/decisions_B4_full.jsonl,scripts/run_b4_benchv2.py
+Table 3,B4 action-level intent: BTSR,100%,100%,yes,data/results/benchmark_v2/decisions_B4_full.jsonl,scripts/run_b4_benchv2.py
+Table 3,B2 retrieval filter: ASR,74.5%,74.5%,yes,data/results/benchmark_v2/decisions_B2.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B2 retrieval filter: 95% CI,"[68.0, 80.0]","[68.0, 80.0]",yes,data/results/benchmark_v2/decisions_B2.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B2 retrieval filter: BTSR,100%,100%,yes,data/results/benchmark_v2/decisions_B2.jsonl,intentflow.experiments.run_benchmark_v2
+Table 3,B5 provenance-only: ASR,50.5%,50.5%,yes,data/results/partfix_seed42_b5/decisions_B5.jsonl,scripts/run_bench_v2_configs.py
+Table 3,B5 provenance-only: 95% CI,"[43.6, 57.4]","[43.6, 57.4]",yes,data/results/partfix_seed42_b5/decisions_B5.jsonl,scripts/run_bench_v2_configs.py
+Table 3,B5 provenance-only: BTSR,100%,100%,yes,data/results/partfix_seed42_b5/decisions_B5.jsonl,scripts/run_bench_v2_configs.py
+Table 3,IF-Core: ASR,24.0%,24.0%,yes,data/results/partfix_seed42_if_core/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+Table 3,IF-Core: 95% CI,"[18.6, 30.4]","[18.6, 30.4]",yes,data/results/partfix_seed42_if_core/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+Table 3,IF-Core: BTSR,100%,100%,yes,data/results/partfix_seed42_if_core/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+Table 3,IntentFlow (IF-Hardened): ASR,12.0%,12.0%,yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+Table 3,IntentFlow (IF-Hardened): 95% CI,"[8.2, 17.2]","[8.2, 17.2]",yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+Table 3,IntentFlow (IF-Hardened): BTSR,100%,100%,yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+Table 3,Arg.-level provenance proxy: ASR,72.0%,72.0%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Arg.-level provenance proxy: 95% CI,"[65.4, 77.8]","[65.4, 77.8]",yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Arg.-level provenance proxy: BTSR,100%,100%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Arg.-level intent only: ASR,37.0%,37.0%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Arg.-level intent only: 95% CI,"[30.6, 43.9]","[30.6, 43.9]",yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Arg.-level intent only: BTSR,100%,100%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,CaMeL*: ASR,37.0%,37.0%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,CaMeL*: 95% CI,"[30.6, 43.9]","[30.6, 43.9]",yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,CaMeL*: BTSR,100%,100%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Progent*: ASR,18.0%,18.0%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Progent*: 95% CI,"[13.3, 23.9]","[13.3, 23.9]",yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,Progent*: BTSR,93%,93%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 3,TaskShield*: ASR,89.0%,89.0%,yes,data/results/sota_baselines/sota_baselines.csv,"intentflow.experiments.sota_baselines (aggregate only, no decision log)"
+Table 3,TaskShield*: 95% CI,"[83.9, 92.6]","[83.9, 92.6]",yes,data/results/sota_baselines/sota_baselines.csv,intentflow.experiments.sota_baselines
+Table 3,TaskShield*: BTSR,100%,100%,yes,data/results/sota_baselines/sota_baselines.csv,intentflow.experiments.sota_baselines
+Table 3,ClawGuard*: ASR,27.5%,27.5%,yes,data/results/sota_baselines/sota_baselines.csv,"intentflow.experiments.sota_baselines (aggregate only, no decision log)"
+Table 3,ClawGuard*: 95% CI,"[21.8, 34.1]","[21.8, 34.1]",yes,data/results/sota_baselines/sota_baselines.csv,intentflow.experiments.sota_baselines
+Table 3,ClawGuard*: BTSR,42%,42%,yes,data/results/sota_baselines/sota_baselines.csv,intentflow.experiments.sota_baselines
+"Sec. 5, by role","IF-Hardened, authority-bearing attacks executed",0/134,0/134,yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, by role","95% CI (authority; printed [0, 2.8%])","[0.0, 2.8]","[0.0, 2.8]",yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, by role","IF-Hardened, SQL query attacks executed",0/34,0/34,yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, by role","IF-Hardened, content/payload attacks executed",24/32,24/32,yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, main result","Hard-benign executed, IF-Hardened",46/50,46/50,yes,data/results/hard_benign/hard_benign_paper_configs.jsonl,scripts/run_hard_benign_ifh.py
+"Sec. 5, main result","Hard-benign executed, B5",46/50,46/50,yes,data/results/hard_benign/hard_benign_paper_configs.jsonl,scripts/run_hard_benign_ifh.py
+"Sec. 5, main result","Hard-benign 95% CI, IF-Hardened","[81.2, 96.8]","[81.2, 96.8]",yes,data/results/hard_benign/hard_benign_paper_configs.jsonl,scripts/run_hard_benign_ifh.py
+"Sec. 5, stability","Seed 123, B5 ASR",62.0%,62.0%,yes,data/results/partfix_seed123_b5/decisions_B5.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, stability","Seed 123, IF-Core ASR",24.0%,24.0%,yes,data/results/partfix_seed123_if_core/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, stability","Seed 123, IF-Hardened ASR",12.0%,12.0%,yes,data/results/partfix_seed123_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, stability","Seed 777, B5 ASR",64.0%,64.0%,yes,data/results/partfix_seed777_b5/decisions_B5.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, stability","Seed 777, IF-Core ASR",26.0%,26.0%,yes,data/results/partfix_seed777_if_core/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 5, stability","Seed 777, IF-Hardened ASR",12.0%,12.0%,yes,data/results/partfix_seed777_if_hardened/decisions_B6.jsonl,scripts/run_bench_v2_configs.py
+"Sec. 4, oracle intent","Live gpt-4o-mini extraction vs oracle, decisions changed",0/400,0/400,yes,data/results/if_hardened_livellm_postfix/decisions_B6.jsonl,"live run, 21/09/2026 (hosted model; log only)"
+Table 4,"B5: executed per family (recipient, endpoint, path, participant, same value)",15 10 10 10 5,15 10 10 10 5,yes,data/results/disambiguation_v2/disambiguation_v2_b5.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4,B5: BTSR,100%,100%,yes,data/results/disambiguation_v2/disambiguation_v2_b5.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4,"Prg: executed per family (recipient, endpoint, path, participant, same value)",15 10 0 10 4,15 10 0 10 4,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4,Prg: BTSR,92%,92%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4,"Int: executed per family (recipient, endpoint, path, participant, same value)",0 2 0 0 0,0 2 0 0 0,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4,Int: BTSR,100%,100%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4,"CaM: executed per family (recipient, endpoint, path, participant, same value)",0 0 0 0 0,0 0 0 0 0,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4,CaM: BTSR,68%,68%,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4,"IFC: executed per family (recipient, endpoint, path, participant, same value)",0 10 0 0 1,0 10 0 0 1,yes,data/results/disambiguation_v2/disambiguation_v2_if_core.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4,IFC: BTSR,100%,100%,yes,data/results/disambiguation_v2/disambiguation_v2_if_core.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4,"IFH: executed per family (recipient, endpoint, path, participant, same value)",0 0 0 0 0,0 0 0 0 0,yes,data/results/disambiguation_v2/disambiguation_v2_if_hardened.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4,IFH: BTSR,100%,100%,yes,data/results/disambiguation_v2/disambiguation_v2_if_hardened.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4 note,"Provenance proxy, attacks executed",50/50,50/50,yes,data/results/r1_comparisons/decisions.jsonl,scripts/run_r1_comparisons.py
+Table 4 note,IF-Confirm ASR / BTSR,"0/50, 50/50","0/50, 50/50",yes,data/results/disambiguation_v2/disambiguation_v2_if_confirm.jsonl,intentflow.experiments.run_disambiguation_v2
+Table 4 note,"IF-Confirm attack decisions that are Confirm (not executed, no argument blocked)",40/50,40/50,yes,data/results/disambiguation_v2/disambiguation_v2_if_confirm.jsonl,intentflow.experiments.run_disambiguation_v2 (Confirm inferred: the log has no decision-type field)
+"Sec. 5.1, endpoint ablation","IF-Hardened (fail-closed): ASR, BTSR","0.0%, 46.7%","0.0%, 46.7%",yes,data/results/endpoint_ablation_n30/endpoint_ablation_n30.csv,intentflow.experiments.run_endpoint_ablation_n30 (aggregate only)
+"Sec. 5.1, endpoint ablation","Fail-open: ASR, BTSR","16.7%, 46.7%","16.7%, 46.7%",yes,data/results/endpoint_ablation_n30/endpoint_ablation_n30.csv,intentflow.experiments.run_endpoint_ablation_n30 (aggregate only)
+"Sec. 5.1, endpoint ablation","IF-Confirm: ASR, BTSR","0.0%, 93.3%","0.0%, 93.3%",yes,data/results/endpoint_ablation_n30/endpoint_ablation_n30.csv,intentflow.experiments.run_endpoint_ablation_n30 (aggregate only)
+Table 5,"TaskShield: ASR, 95% CI, BTSR","95.0% [76.4, 99.1] 95%","95.0% [76.4, 99.1] 95%",yes,data/results/agentdojo_sota_comparison/agentdojo_sota_comparison.csv,intentflow.experiments.run_agentdojo_sota_comparison
+Table 5,"ClawGuard: ASR, 95% CI, BTSR","90.0% [69.9, 97.2] 75%","90.0% [69.9, 97.2] 75%",yes,data/results/agentdojo_sota_comparison/agentdojo_sota_comparison.csv,intentflow.experiments.run_agentdojo_sota_comparison
+Table 5,"PACT: ASR, 95% CI, BTSR","75.0% [53.1, 88.8] 100%","75.0% [53.1, 88.8] 100%",yes,data/results/agentdojo_sota_comparison/agentdojo_sota_comparison.csv,intentflow.experiments.run_agentdojo_sota_comparison
+Table 5,"Progent: ASR, 95% CI, BTSR","5.0% [0.9, 23.6] 100%","5.0% [0.9, 23.6] 100%",yes,data/results/agentdojo_sota_comparison/agentdojo_sota_comparison.csv,intentflow.experiments.run_agentdojo_sota_comparison
+Table 5,"CaMeL: ASR, 95% CI, BTSR","0.0% [0.0, 16.1] 75%","0.0% [0.0, 16.1] 75%",yes,data/results/agentdojo_sota_comparison/agentdojo_sota_comparison.csv,intentflow.experiments.run_agentdojo_sota_comparison
+Table 5,"IntentFlow (IF-Hardened): ASR, 95% CI, BTSR","0.0% [0.0, 16.1] 75%","0.0% [0.0, 16.1] 75%",yes,data/results/agentdojo_sota_comparison/agentdojo_sota_comparison.csv,intentflow.experiments.run_agentdojo_sota_comparison
+"Sec. 5.2, adaptive",Attacks executed / benign executed,"4/42, 4/5","4/42, 4/5",yes,data/results/adaptive_eval/adaptive_attacks.jsonl,intentflow.experiments.run_adaptive_eval
+"Sec. 5.2, adaptive",Families with a success,Role-confusion: 4,Role-confusion: 4,yes,data/results/adaptive_eval/adaptive_attacks.jsonl,intentflow.experiments.run_adaptive_eval
+"Sec. 5.2, mixed provenance","B5: attacks, benign executed","40/40, 20/20","40/40, 20/20",yes,data/results/mixed_provenance/mixed_provenance_configs.jsonl,scripts/run_mixed_provenance_configs.py
+"Sec. 5.2, mixed provenance","IF-Core: attacks, benign executed","11/40, 20/20","11/40, 20/20",yes,data/results/mixed_provenance/mixed_provenance_configs.jsonl,scripts/run_mixed_provenance_configs.py
+"Sec. 5.2, mixed provenance","IF-Hardened: attacks, benign executed","0/40, 20/20","0/40, 20/20",yes,data/results/mixed_provenance/mixed_provenance_configs.jsonl,scripts/run_mixed_provenance_configs.py
+"Sec. 5.2, mixed provenance",IF-Core 95% CI,"[16.1, 42.8]","[16.1, 42.8]",yes,data/results/mixed_provenance/mixed_provenance_configs.jsonl,scripts/run_mixed_provenance_configs.py
+"Sec. 6, latency",IF-Hardened decision latency p50 / p95 (ms),63.6 / 242.2,63.6 / 242.2,yes,data/results/partfix_seed42_if_hardened/decisions_B6.jsonl,machine-dependent; numpy linear percentiles
+"Sec. 6, live campaign",Corrupted calls proposed,17/110 = 15.5%,17/110 = 15.5%,yes,data/results/e2e_phase3/decisions.jsonl,intentflow.experiments.e2e_phase3 (hosted model; log only)
+"Sec. 6, live campaign",Multi-hop corrupted calls,16/22 = 72.7%,16/22 = 72.7%,yes,data/results/e2e_phase3/decisions.jsonl,intentflow.experiments.e2e_phase3 (hosted model; log only)
+"Sec. 6, live campaign","Corrupted calls blocked, 95% CI","17/17 [81.6, 100.0]","17/17 [81.6, 100.0]",yes,data/results/e2e_phase3/decisions.jsonl,intentflow.experiments.e2e_phase3 (hosted model; log only)
+"Sec. 6, live campaign","Unauthorized executions, 95% CI","0/110 [0.0, 3.4]","0/110 [0.0, 3.4]",yes,data/results/e2e_phase3/decisions.jsonl,intentflow.experiments.e2e_phase3 (hosted model; log only)
+"Sec. 6, live campaign",Benign tasks executed,48/50 = 96.0%,48/50 = 96.0%,yes,data/results/e2e_phase3/decisions.jsonl,intentflow.experiments.e2e_phase3 (hosted model; log only)
+"Sec. 6, live campaign",Planner tokens,55873,55873,yes,data/results/e2e_phase3/decisions.jsonl,intentflow.experiments.e2e_phase3 (hosted model; log only)
