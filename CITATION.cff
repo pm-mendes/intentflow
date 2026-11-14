@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "If you use this software or its benchmarks, please cite the ICAART 2027 paper below."
+title: "IntentFlow: artifact of the ICAART 2027 paper on intent-conditioned argument mediation"
+abstract: >-
+  Runtime mediator for tool-using LLM agents that checks each authority-bearing argument
+  against an intent contract and the provenance of its value, with the benchmarks, decision
+  logs and scripts behind every number of the paper.
+type: software
+authors:
+  - given-names: Yulliwas
+    family-names: Ameur
+    affiliation: "Efrei Research Lab, Université Paris-Panthéon-Assas; CEDRIC, Cnam"
+    orcid: "https://orcid.org/0000-0003-1435-2982"
+  - given-names: Pedro
+    family-names: Mendes
+    affiliation: "CEDRIC, Conservatoire National des Arts et Métiers (Cnam)"
+    orcid: "https://orcid.org/0009-0007-5836-9723"
+  - given-names: Samia
+    family-names: Bouzefrane
+    affiliation: "CEDRIC, Conservatoire National des Arts et Métiers (Cnam)"
+    orcid: "https://orcid.org/0000-0002-0979-1289"
+version: icaart2027-camera-ready
+date-released: "2026-11-14"
+license: MIT
+repository-code: "https://github.com/pm-mendes/intentflow"
+keywords:
+  - LLM agents
+  - tool calling
+  - prompt injection
+  - runtime mediation
+  - intent contracts
+  - provenance
+preferred-citation:
+  type: conference-paper
+  title: "Intent-Conditioned Argument Mediation for Tool-Using LLM Agents: Blocking Trusted-but-Unauthorized Arguments"
+  authors:
+    - given-names: Yulliwas
+      family-names: Ameur
+      orcid: "https://orcid.org/0000-0003-1435-2982"
+    - given-names: Pedro
+      family-names: Mendes
+      orcid: "https://orcid.org/0009-0007-5836-9723"
+    - given-names: Samia
+      family-names: Bouzefrane
+      orcid: "https://orcid.org/0000-0002-0979-1289"
+  collection-title: "Proceedings of the 19th International Conference on Agents and Artificial Intelligence (ICAART 2027)"
+  conference:
+    name: "19th International Conference on Agents and Artificial Intelligence (ICAART 2027)"
+    city: Valletta
+    country: MT
+    date-start: "2027-02-23"
+    date-end: "2027-02-26"
+  publisher:
+    name: SciTePress
+  year: 2027

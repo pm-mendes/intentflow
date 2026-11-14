@@ -15,6 +15,8 @@ Version cited by the ICAART 2027 camera-ready.
   changes. Unit tests: `tests/unit/test_provenance.py::TestExactIntentMatch`.
 - Camera-ready results, regeneration scripts and `scripts/check_paper_numbers.py` (see README).
 - Authors and links restored after double-blind review.
+- `CITATION.cff`: authors, affiliations, ORCID iDs and license for the GitHub citation button and the
+  Zenodo archive.
 
 ## icaart2027-submission (28 September 2026)
 
