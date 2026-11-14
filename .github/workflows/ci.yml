@@ -1,8 +1,6 @@
 name: CI
 
-# Mirrors .gitlab-ci.yml (the CI of record for this project); kept in sync
-# so the anonymized GitHub mirror used for artifact review is independently
-# checkable without a GitLab account.
+# Lint, type-check and unit tests for the public IntentFlow repository.
 
 on:
   push:

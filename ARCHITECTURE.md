@@ -4,12 +4,11 @@ Reference documentation for the IntentFlow codebase (baselines, components, data
 
 ## Project
 
-IntentFlow is a research artifact for a ICAART 2027 paper: "Intent-Conditioned Argument Mediation for
-Retrieval-to-Action Security in Agentic RAG." It implements and benchmarks a runtime argument-level
-mediation layer that defends agentic RAG tool-calling pipelines against prompt-injection / retrieval
-corruption attacks, compared against baselines B0–B6 (see Architecture below). The repo is the
-anonymized submission source (`README.md`, `pyproject.toml` authors/URLs are intentionally
-anonymized placeholders — do not "fix" them).
+IntentFlow is the research artifact of the ICAART 2027 paper "Intent-Conditioned Argument Mediation for
+Tool-Using LLM Agents: Blocking Trusted-but-Unauthorized Arguments" (Yulliwas Ameur, Pedro Mendes,
+Samia Bouzefrane). It implements and benchmarks a runtime argument-level mediation layer that defends
+tool-calling LLM agents against prompt-injection / retrieval corruption attacks, compared against
+baselines B0–B6 (see Architecture below).
 
 Source code and docstrings are written in French; this is intentional project style, not an error.
 
@@ -136,8 +135,8 @@ since indexing breaks for N<20). Lower is better for PCR/TMR/ASR/FBR; higher is 
    baseline and writes one `MediationDecision` per task as a JSONL line under `data/results/`.
 3. `experiments/compute_metrics.py` (or a per-experiment variant) aggregates JSONL → `MetricsResult` →
    CSV.
-4. `scripts/generate_metrics_manifest.py` / `artifact/metrics_manifest.json` track which result files
-   back which paper table/figure, for artifact reproducibility auditing.
+4. `scripts/check_paper_numbers.py` recomputes every number of the ICAART 2027 paper from the result
+   files and writes `artifact/results/paper_metrics_manifest.csv` (paper location → result file → script).
 
 Many files under `src/intentflow/experiments/` are one-off scripts for a specific paper
 section/ablation/robustness check (label noise, intent noise, endpoint ablation, multi-seed, McNemar

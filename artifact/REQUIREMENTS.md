@@ -40,12 +40,11 @@ The canonical entry point is `artifact/scripts/run_all.sh --quick|--offline|--wi
 | Mode | Runtime | API key | What it runs |
 |---|---|---|---|
 | `--quick` | ~5 min | Not required | `data.generator`; baselines B0/B1/B2/B3/B5 via `run_baseline`; `compute_metrics` |
-| `--offline` | ~60 min | Not required (B4/B6 use heuristic intent) | `data.generator`, `data.benchmark_v2`, `data.agentdojo_inspired`; baselines B0/B1/B1b/B2/B3/B4/B5/B6; `compute_metrics`; `run_disambiguation_v2`; `endpoint_ablation`; `intent_noise`; `label_noise`; `policy_fuzzing_extended` |
-| `--with-llm` | ~90 min | Required (`OPENAI_API_KEY`) | Same data generation + baselines as `--offline`, plus `run_benchmark_v2`, `run_b6_n100`, `run_disambiguation_v2`, `run_sprint2`, `run_sprint3`, `endpoint_ablation`, `intent_noise`, `label_noise`, `run_mixed_provenance`, `policy_fuzzing_extended`, and regenerates `artifact/metrics_manifest.json` via `scripts/generate_metrics_manifest.py` |
+| `--offline` | ~10 min | Not required (oracle intent) | Every controlled result of the ICAART 2027 paper (Tables 3–5, Section 5), then `scripts/check_paper_numbers.py`; see `artifact/scripts/run_all.sh` |
+| `--with-llm` | ~90 min | Required (`OPENAI_API_KEY`) | Same data generation + baselines as `--offline`, plus `run_benchmark_v2`, `run_b6_n100`, `run_disambiguation_v2`, `run_sprint2`, `run_sprint3`, `endpoint_ablation`, `intent_noise`, `label_noise`, `run_mixed_provenance`, `policy_fuzzing_extended`, then `scripts/check_paper_numbers.py` |
 
-`--quick` and `--offline` never call the OpenAI API — B4/B6 automatically fall
-back to heuristic intent extraction (same security properties, reduced field
-coverage). See `artifact/scripts/run_all.sh` for the exact, current command
+`--quick` and `--offline` never call the OpenAI API. `--offline` uses oracle intent contracts, as
+every controlled result of the paper does. See `artifact/scripts/run_all.sh` for the exact, current command
 list — the table above summarizes it, but that script is the source of truth.
 
 Beyond `run_all.sh`, the full result set checked into `data/results/` also
@@ -72,12 +71,6 @@ this as a hard bound.
 - All experiments use `RANDOM_SEED=42` for deterministic data generation
 - LLM outputs may vary slightly across API calls (temperature=0 minimizes variance)
 - Latency measurements depend on hardware and network conditions
-- Expected metrics for the headline Bench-v2 (N=200) Table 2 are provided in
-  `artifact/results/expected_metrics.csv` (generated via
-  `intentflow.metrics.evaluator.MetricsComputer` from the real decision logs
-  under `data/results/benchmark_v2/`, `data/results/sprint2/`, and
-  `data/results/b6_n200/` — see `README.md` for the exact source files and
-  the Validation section for the `diff` command)
-- `artifact/metrics_manifest.json` (via `scripts/generate_metrics_manifest.py`)
-  tracks which result file backs every other paper table/figure, for
-  reproducibility auditing beyond Table 2
+- `scripts/check_paper_numbers.py` recomputes every number of the paper from the
+  released result files and writes `artifact/results/paper_metrics_manifest.csv`
+  (paper location → recomputed value → result file → script); see `README.md`

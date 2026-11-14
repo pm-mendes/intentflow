@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "intentflow"
 version = "0.1.0"
-description = "Intent-Conditioned Argument Mediation for Retrieval-to-Action Security in Agentic RAG"
-authors = ["Anonymous Authors <anonymous@example.com>"]
+description = "Intent-Conditioned Argument Mediation for Tool-Using LLM Agents: Blocking Trusted-but-Unauthorized Arguments (ICAART 2027)"
+authors = ["Yulliwas Ameur", "Pedro Mendes", "Samia Bouzefrane"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://anonymous.4open.science/r/intentflow-raise26"
-repository = "https://anonymous.4open.science/r/intentflow-raise26"
+homepage = "https://github.com/pm-mendes/intentflow"
+repository = "https://github.com/pm-mendes/intentflow"
 keywords = ["agentic-RAG", "security", "prompt-injection", "information-flow"]
 packages = [{include = "intentflow", from = "src"}]
 

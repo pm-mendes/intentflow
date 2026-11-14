@@ -1,275 +1,150 @@
-# IntentFlow — Anonymized Research Artifact
-## ICAART 2027 Submission
+# IntentFlow
 
-**Title:** Intent-Conditioned Argument Mediation for Retrieval-to-Action Security in Agentic RAG
+Research artifact of the paper
 
-> This artifact is anonymized for double-blind review.
-> Authors and institution identifiers have been removed.
-> The repository will be made public upon acceptance.
+> **Intent-Conditioned Argument Mediation for Tool-Using LLM Agents: Blocking Trusted-but-Unauthorized Arguments**
+> Yulliwas Ameur, Pedro Mendes, Samia Bouzefrane.
+> ICAART 2027, 19th International Conference on Agents and Artificial Intelligence (short paper).
 
----
+IntentFlow is a runtime mediator placed between an unmodified LLM planner and its tools. Before a tool call
+executes, it checks each authority-bearing argument (recipient, participants, file path, endpoint) against an
+intent contract built from the user's request and against the provenance of the value. It targets
+*trusted-but-unauthorized* values: values that come from an admissible source (a directory, an internal
+document) but are not the ones the user asked for.
 
-## Overview
+This repository contains the implementation, the benchmarks, the decision logs and the scripts behind every
+number of the paper. The version cited by the paper is the tag `icaart2027-camera-ready`.
 
-This artifact contains the complete implementation of IntentFlow,
-a runtime argument-level mediation layer for agentic RAG systems,
-together with all benchmarks, experiment scripts, results, and
-metric computation pipelines used in the paper.
+## Benchmarks (637 tasks)
 
-`ToolMediator.execute()` (`src/intentflow/pipeline/mediator.py`) is the single
-entry point every baseline runs through. It extracts user intent, tracks
-argument provenance, and checks both against a per-tool, per-argument policy
-table before allowing a tool call — see `ARCHITECTURE.md` in this repo for the full
-architecture writeup (baselines B0–B6, supporting components, data flow).
-
-## Benchmarks (657 tasks)
-
-| Suite | Attacked | Benign | Total | Used for |
+| Suite | Attacked | Benign | Total | Paper |
 |---|---|---|---|---|
-| Bench-v2 (main) | 200 | 200 + 50 hard-benign | 450 | RQ1 (main results table) |
-| Disambiguation-v2 | 50 | 50 | 100 | RQ2, trusted-but-unauthorized |
-| AgentDojo subset | 20 | 20 | 40 | RQ3, external validity |
-| Bench-v1 (sanity) | 10 | 10 | 20 | Sanity check across system versions |
-| Adaptive white-box | 42 | 5 | 47 | RQ4, adaptive attacker |
-| **Total** | | | **657** | |
+| Bench-v2 (main), `data/benchmark_v2/` | 200 | 200 + 50 hard-benign (`data/hard_benign/`) | 450 | Table 3, Section 5 |
+| Disambiguation-v2, `data/disambiguation_v2/` | 50 | 50 | 100 | Table 4 |
+| AgentDojo-derived replay, `data/agentdojo_official/` | 20 | 20 | 40 | Table 5 |
+| Adaptive white-box, `data/adaptive_attacks_intentflow/` | 42 | 5 | 47 | Section 5.2 |
+| **Total** | **312** | **325** | **637** | |
 
-No task appears in more than one suite; hard-benign tasks are additional to
-Bench-v2, not a resample. `scripts/generate_metrics_manifest.py` regenerates
-`artifact/metrics_manifest.json` (a machine-checkable source-file-per-number
-index); it is not shipped pre-generated in this commit because it still
-targets an earlier submission's numbers and directory layout — see
-`artifact/results/NOTE.md`. Until it is updated, `data/results/`'s curated
-directories (named after the config they hold, e.g.
-`partfix_seed42_if_hardened`) are the authoritative source; the Validation
-section below gives the exact file-to-table-row mapping for the main
-results table.
+Section 5 also uses a mixed-provenance set (`data/mixed_provenance_v2/`, 40 + 20), an endpoint ablation
+(30 + 30) and two further Bench-v2 instances (`data/benchmark_v2_seed123/`, `data/benchmark_v2_seed777/`).
+The live campaign of Section 6 uses 110 attacked and 50 benign Bench-v2 tasks.
 
-## Artifact Contents
+All controlled results use oracle intent contracts (`intentflow.baselines.runner.oracle_intent_for`) and
+the schema-declared argument roles. The provenance tracker reads the benchmark's ground-truth
+`is_injected` flag to label a document as injected; a deployment would have to infer it (see the paper,
+Section 4).
 
-```
-.
-├── README.md                        ← This file (identical to artifact/README.md)
-├── ARCHITECTURE.md                        ← Architecture / component reference
-├── pyproject.toml, poetry.lock      ← Dependency management (Poetry)
-├── data/
-│   ├── tasks_benign.json, tasks_attacked.json, documents.json
-│   │                                ← Bench-v1 (sanity), N=10+10
-│   ├── benchmark_v2/                ← Bench-v2 (main), N=200+200
-│   ├── disambiguation_v2/           ← Disambiguation-v2, N=50+50
-│   ├── agentdojo_official/          ← AgentDojo subset, N=20+20
-│   ├── adaptive_attacks_intentflow/ ← Adaptive white-box, N=42+5
-│   ├── hard_benign/                 ← Hard-benign extension, N=50 (benign only)
-│   ├── mixed_provenance/, mixed_provenance_v2/
-│   │                                ← FM4 mixed-provenance ablation fixtures
-│   ├── agentdojo_inspired/          ← Legacy synthetic AgentDojo-style set,
-│   │                                  superseded by agentdojo_official/ above
-│   └── results/                     ← JSONL decision logs + CSV metrics per
-│                                       experiment (one subdirectory per run)
-├── src/intentflow/
-│   ├── pipeline/mediator.py         ← ToolMediator.execute(), the core entry point
-│   ├── intent/extractor.py          ← IntentExtractor (oracle/llm/heuristic)
-│   ├── provenance/tracker.py        ← ProvenanceTracker (integrity lattice)
-│   ├── policy/engine.py             ← PolicyEngine (argument-level policy table)
-│   ├── tools/registry.py            ← Simulated tool implementations
-│   ├── models/models.py             ← Shared Pydantic contracts
-│   ├── metrics/                     ← MetricsComputer (PCR/TMR/ASR/BTSR/PBR/FBR)
-│   ├── data/                        ← Task/document generators (one per suite)
-│   ├── baselines/                   ← BaselineRunner + baseline-specific helpers
-│   └── experiments/                 ← One-off scripts per paper section/ablation
-│                                       (label noise, intent noise, endpoint
-│                                       ablation, multi-seed, McNemar, SOTA
-│                                       comparison, AgentDojo integration, ...)
-├── artifact/
-│   ├── README.md                    ← Byte-for-byte copy of the root README
-│   ├── REQUIREMENTS.md              ← Hardware/software prereqs, runtimes
-│   ├── policies/                    ← default_policies.yaml, api_registry.yaml,
-│   │                                  alias_directory.json (artifact-facing
-│   │                                  copies of the policy/registry tables)
-│   ├── results/expected_metrics.csv ← Expected Table 2 output for validation
-│   ├── metrics_manifest.json        ← Generated by scripts/generate_metrics_manifest.py
-│   ├── sigma/                       ← Sigma detection rule + backtested events
-│   │                                  (generated by scripts/logs_to_sigma.py)
-│   └── scripts/run_all.sh           ← One-shot reproduction script (see below)
-├── scripts/
-│   ├── generate_metrics_manifest.py ← Regenerates artifact/metrics_manifest.json
-│   ├── pseudonymize_logs.py         ← SHA-256 pseudonymization of JSONL logs
-│   ├── replay_decision.py           ← Replay/audit a single logged decision
-│   └── logs_to_sigma.py             ← Converts decision logs into a Sigma
-│                                       detection rule (detection-engineering export)
-└── tests/unit/, tests/integration/  ← pytest suite
-```
+## Reproducing the paper
 
----
-
-## Quick Start
-
-### Prerequisites
-
-- Python 3.11+
-- Poetry (`curl -sSL https://install.python-poetry.org | python3 -`)
-- OpenAI API key, only for `--with-llm` mode (B4/B6 LLM-based intent extraction)
-
-### Setup
+Requirements: Python 3.11+, [Poetry](https://python-poetry.org/). No API key is needed for the controlled
+results.
 
 ```bash
-# 1. Install dependencies
 poetry install
-
-# 2. (Only needed for --with-llm) configure API key
-cp .env.example .env
-# Edit .env: set OPENAI_API_KEY=sk-...
-
-# 3. Verify installation
-poetry run python -c "import intentflow; print('OK')"
+bash artifact/scripts/run_all.sh --offline                 # ~10 min: regenerates every controlled result
+PYTHONPATH=src poetry run python scripts/check_paper_numbers.py   # ~5 s: recomputes every number of the paper
 ```
 
-### Reproduce the paper's results
+`scripts/check_paper_numbers.py` recomputes each number of the paper (Tables 2–5, Sections 4–6) from the
+files in `data/results/`, compares it with the printed value and writes
+`artifact/results/paper_metrics_manifest.csv`: paper location, quantity, value in the paper, recomputed
+value, result file and producing script. On this tag, all 95 values match. Decision latency is
+machine-dependent; it matches only on the released log.
 
-The canonical reproduction entry point is `artifact/scripts/run_all.sh`, with
-three modes:
+Every script below runs offline from the repository root and writes to the directory given as argument
+(`PYTHONPATH=src python <script> <output_dir>`). Re-running them gives the released decisions exactly; only
+`latency_ms` changes.
+
+| Paper | Result files (`data/results/`) | Script |
+|---|---|---|
+| Table 3: B0, B2, B3 | `benchmark_v2/decisions_B{0,2,3}.jsonl` | `scripts/run_bench_v2_baselines.py` |
+| Table 3: B4 action-level intent (all 400 tasks) | `benchmark_v2/decisions_B4_full.jsonl` | `scripts/run_b4_benchv2.py` |
+| Table 3: B5, IF-Core, IF-Hardened; stability (seeds 123, 777); IF-Confirm | `partfix_seed{42,123,777}_{b5,if_core,if_hardened,if_confirm}/` | `scripts/run_bench_v2_configs.py` |
+| Tables 3 and 4: provenance proxy, argument-level intent only, CaMeL\*, Progent\* | `r1_comparisons/` | `scripts/run_r1_comparisons.py` |
+| Table 3: TaskShield\*, ClawGuard\* | `sota_baselines/sota_baselines.csv` | `python -m intentflow.experiments.sota_baselines` |
+| Section 5: 50 hard-benign tasks (IF-Hardened, IF-Confirm, B5) | `hard_benign/hard_benign_paper_configs.jsonl` | `scripts/run_hard_benign_ifh.py` |
+| Table 4: B5, IF-Core, IF-Hardened, IF-Confirm | `disambiguation_v2/` | `python -m intentflow.experiments.run_disambiguation_v2` |
+| Section 5.1: endpoint ablation | `endpoint_ablation_n30/` | `python -m intentflow.experiments.run_endpoint_ablation_n30` |
+| Table 5: AgentDojo-derived replay | `agentdojo_sota_comparison/` | `python -m intentflow.experiments.run_agentdojo_sota_comparison` |
+| Section 5.2: adaptive attacks | `adaptive_eval/adaptive_attacks.jsonl` | `python -m intentflow.experiments.run_adaptive_eval` |
+| Section 5.2: mixed provenance, per configuration | `mixed_provenance/mixed_provenance_configs.jsonl` | `scripts/run_mixed_provenance_configs.py` |
+
+Scripts added for the camera-ready (November 2026): `run_r1_comparisons.py`, `run_b4_benchv2.py`,
+`run_hard_benign_ifh.py`, `run_mixed_provenance_configs.py`, `run_bench_v2_baselines.py`,
+`run_bench_v2_configs.py` and `check_paper_numbers.py`. The script that produced the `partfix_seed*` logs
+on 28/09/2026 was not kept; `run_bench_v2_configs.py` regenerates all twelve logs with identical decisions
+and provenance labels.
+
+### Results that involve a hosted model (released as logs only)
+
+| Paper | Result files (`data/results/`) | Producing code |
+|---|---|---|
+| Section 4: live `gpt-4o-mini` intent extraction on the 400 Bench-v2 tasks under IF-Hardened (0/400 decisions differ from oracle intent) | `if_hardened_livellm_postfix/decisions_B6.jsonl` | `BaselineRunner.run(..., use_oracle=False)` with `OPENAI_API_KEY` |
+| Section 6: live planner campaign (`gpt-4o-mini-2024-07-18`, IF-Confirm, 110 + 50 tasks) | `e2e_phase3/` | `python -m intentflow.experiments.e2e_phase3` |
+
+Hosted decoding is not deterministic: re-running these gives different logs.
+
+### Files in `data/results/` that the paper does not use
+
+- `benchmark_v2/decisions_B1.jsonl` (prompt-only) and `b1b_spotlighting/` (Spotlighting): these baselines
+  were not run against a model. `baselines/spotlighting.py` simulates Spotlighting with fixed
+  probabilities. Neither is reported in the paper.
+- `fm4_improved/` (mixed provenance under the default policy, without SQL checks): superseded by
+  `mixed_provenance/mixed_provenance_configs.jsonl`, which reports each named configuration.
+
+## Known limitations of the prototype
+
+- **Value–intent matching.** Since the camera-ready, an argument value matches the intent contract only if
+  it is equal to an authorized value after role-specific normalization (membership for lists). The
+  submitted version also accepted substring inclusion, so `manager@company.com.evil.io` matched a contract
+  authorizing `manager@company.com`. The fix changes none of the paper's decisions (see `CHANGELOG.md`).
+- **Injection labels.** The provenance tracker takes the benchmark's `is_injected` flag (Section 4 of the
+  paper).
+- **Disambiguation-v2 labels.** In `dv2_attacked_020` and `dv2_attacked_024`, the reference contract wrongly
+  lists the attacker's endpoint. The published numbers are computed on the benchmark as released; the
+  labels will be corrected in a later version of the benchmark.
+- **Provenance source identifier.** When several injected documents contain the same value, the
+  `source_id` recorded in a log may differ between runs (set iteration order depends on
+  `PYTHONHASHSEED`). The origin label and the decision do not.
+
+## Repository layout
+
+```
+src/intentflow/
+  pipeline/mediator.py     ToolMediator.execute(), the entry point every configuration runs through
+  intent/                  intent extraction (oracle, LLM, heuristic), endpoint registry, aliases
+  provenance/tracker.py    argument provenance (intent match, user message, documents, spans)
+  policy/engine.py         per-tool, per-argument policies; IF-Core, IF-Hardened, IF-Confirm
+  policy/sql_hardening.py  SQL syntax-tree checks
+  baselines/               BaselineRunner, oracle_intent_for, baseline helpers
+  experiments/             one script per experiment of the paper (see table above)
+data/                      benchmarks (tasks and documents) and data/results/ (decision logs, metrics)
+scripts/                   camera-ready scripts, check_paper_numbers.py, log tools
+artifact/                  run_all.sh, policies (YAML copies), Sigma export, paper_metrics_manifest.csv
+tests/                     pytest suite
+```
+
+See `ARCHITECTURE.md` for the components and the data flow. Source comments and docstrings are in French.
+
+## Tests
 
 ```bash
-bash artifact/scripts/run_all.sh --quick      # ~5 min,  no API key, B0/B1/B2/B3/B5 only
-bash artifact/scripts/run_all.sh --offline    # ~60 min, no API key, B4/B6 use heuristic intent extraction
-bash artifact/scripts/run_all.sh --with-llm   # ~90 min, requires OPENAI_API_KEY, full B0-B6 + all ablations
+poetry run pytest tests/
 ```
 
-`--offline` and `--with-llm` regenerate all five benchmark suites and run the
-full set of `experiments/*` ablations (disambiguation-v2, endpoint ablation,
-intent noise, label noise, policy fuzzing, mixed provenance, ...);
-`--with-llm` additionally regenerates `artifact/metrics_manifest.json`.
-Pass `--pseudonymize-logs` to any mode to also emit SHA-256-pseudonymized
-copies of the JSONL decision logs via `scripts/pseudonymize_logs.py`.
+## Citation
 
-**Expected output — Table 2 (Bench-v2, N=200 attacked, M=200 benign):**
-
-| Defense | ASR ↓ | BTSR ↑ | FBR ↓ | ASR 95% CI |
-|---|---|---|---|---|
-| B0 No defense | 100% | 100% | 0% | [98.1, 100%] |
-| B1 Prompt-only | 100% | 100% | 0% | [98.1, 100%] |
-| B3 Tool allow-list | 100% | 100% | 0% | [98.1, 100%] |
-| B1b Spotlighting | 85.0% | 100% | 0% | [79.4, 89.3%] |
-| B2 Retrieval filter† | 74.5% | 100% | 0% | [68.0, 80.0%] |
-| B5 Provenance-only | 50.5% | 100% | 0% | [43.6, 57.4%] |
-| IF-Core (no hardening) | 24.0% | 100% | 0% | [18.6, 30.4%] |
-| **B6 IntentFlow (IF-Hardened)** | **12.0%** | **100%** | **0%** | **[8.2, 17.2%]** |
-
-†Oracle access. These are the final, corrected numbers reported in the
-ICAART 2027 paper (Table 3), after two measurement-bug fixes described in
-the paper's "Measurement corrections" paragraph (Section 5) and a
-list-argument policy fix (Section 6) — see `data/results/partfix_seed42_b5/`,
-`data/results/partfix_seed42_if_core/`, `data/results/partfix_seed42_if_hardened/`,
-`data/results/benchmark_v2/decisions_B{0,1,2,3}.jsonl`, and
-`data/results/b1b_spotlighting/decisions_B1b.jsonl` for the exact source
-decision logs behind each row, computed via `MetricsComputer` — not
-hand-typed. `data/results/partfix_seed123_*` and `data/results/partfix_seed777_*`
-hold the two additional independently-sampled seeds used for the paper's
-stability check.
-
-### Individual experiments
-
-```bash
-poetry run python -m intentflow.data.generator                          # generate Bench-v1 fixtures
-poetry run python -m intentflow.experiments.run_baseline --baseline B6  # run one baseline
-poetry run python -m intentflow.experiments.compute_metrics             # aggregate metrics.csv from JSONL logs
+```bibtex
+@inproceedings{ameur2027intentflow,
+  author    = {Ameur, Yulliwas and Mendes, Pedro and Bouzefrane, Samia},
+  title     = {Intent-Conditioned Argument Mediation for Tool-Using {LLM} Agents:
+               Blocking Trusted-but-Unauthorized Arguments},
+  booktitle = {Proceedings of the 19th International Conference on Agents and Artificial Intelligence (ICAART 2027)},
+  publisher = {SciTePress},
+  year      = {2027}
+}
 ```
-
-Many additional one-off experiment entry points live under
-`src/intentflow/experiments/` (`run_disambiguation_v2`, `endpoint_ablation`,
-`intent_noise`, `label_noise`, `policy_fuzzing_extended`, `run_mixed_provenance`,
-`stability_resample`, `multi_seeds_eval`, `sota_baselines`, ...) — check
-`artifact/scripts/run_all.sh` for the current canonical list and order.
-
----
-
-## Offline Mode (no API key)
-
-All experiments except the LLM-based intent extraction path run without an
-OpenAI API key. B4 and B6 fall back to heuristic intent extraction when no
-key is set (same security properties, reduced coverage). Per-field F1 on the
-200-message gold standard is uneven, not a single average — measured with a
-real gpt-4o-mini call (`data/results/intent_eval_real/`, not the older
-simulated `intent_eval_extended.csv`): action 99.0%, recipient 92.3%, path
-82.0%, endpoint 100% (separate registry+LLM gold standard, N=20), date 52.5%,
-participants 33.3%, selector 4.1%. See `intentflow.metrics.intent_eval_real`
-to reproduce, and `intentflow.intent.endpoint_extractor` for the endpoint figure.
-
-```bash
-bash artifact/scripts/run_all.sh --offline
-```
-
-(`scripts/run_all_experiments.sh` is a smaller, older script that only
-reproduces the N=10 Bench-v1 sanity baselines — use `artifact/scripts/run_all.sh`
-for the full current reproduction.)
-
----
-
-## Validation
-
-Beware: `intentflow.experiments.compute_metrics` aggregates the **Bench-v1**
-(N=10) `data/results/decisions_B*.jsonl` logs into `data/results/metrics.csv`
-— that is a sanity check, not the Bench-v2 headline table.
-
-The N=200 Bench-v2 headline table (Table 3 in the paper) is not produced by
-a single `experiments/*` script; it is scored from these decision logs via
-`intentflow.metrics.evaluator.MetricsComputer`:
-
-```bash
-poetry run python -c "
-from intentflow.metrics.evaluator import MetricsComputer
-for name, path in [
-    ('B0', 'data/results/benchmark_v2/decisions_B0.jsonl'),
-    ('B1', 'data/results/benchmark_v2/decisions_B1.jsonl'),
-    ('B1b', 'data/results/b1b_spotlighting/decisions_B1b.jsonl'),
-    ('B2', 'data/results/benchmark_v2/decisions_B2.jsonl'),
-    ('B3', 'data/results/benchmark_v2/decisions_B3.jsonl'),
-    ('B5', 'data/results/partfix_seed42_b5/decisions_B5.jsonl'),
-    ('B6', 'data/results/partfix_seed42_if_core/decisions_B6.jsonl'),      # IF-Core row
-    ('B6', 'data/results/partfix_seed42_if_hardened/decisions_B6.jsonl'),  # IF-Hardened row (headline)
-]:
-    print(name, MetricsComputer.compute(path, name).model_dump())
-"
-```
-
-Expect ASR 100/100/74.5/85.0/100/50.5/24.0/12.0 in that order (B0, B1, B2,
-B1b, B3, B5, IF-Core, IF-Hardened), matching the README results table above.
-`data/results/partfix_seed123_*` and `data/results/partfix_seed777_*` hold
-the same four configurations (B5/IF-Core/IF-Hardened/IF-Confirm) re-run on
-two further, independently-sampled Bench-v2 instances (seeds 123 and 777)
-for the paper's stability check. To regenerate any of these decision logs
-from scratch rather than just re-scoring the existing ones, see the
-corresponding `experiments/*` module (`run_benchmark_v2`,
-`if_core_vs_hardened`, `run_b6_n200`) with `use_oracle=True`.
-
----
-
-## Double-blind Compliance Checklist
-
-- [x] No author names in source files
-- [x] No institution names in source files
-- [x] No personal email addresses
-- [x] No links to personal GitHub/GitLab accounts
-- [x] No identifying paths (e.g., `/home/username/`)
-- [x] No commit history with identifying information
-- [x] PDF metadata cleared (compile with anonymized author fields)
-- [x] License file uses placeholder: `Copyright (c) 2026 Anonymous Authors`
-
----
 
 ## License
 
-MIT License — Copyright (c) 2026 Anonymous Authors
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+MIT License, Copyright (c) 2026 Yulliwas Ameur, Pedro Mendes, Samia Bouzefrane. See `LICENSE`.
