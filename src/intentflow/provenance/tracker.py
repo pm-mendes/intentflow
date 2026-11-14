@@ -263,15 +263,19 @@ class ProvenanceTracker:
         for param_name, param_value in self.intent.parameters.items():
             if param_name not in allowed_fields or param_value is None:
                 continue
-            param_str = normalize_unicode(str(param_value))
-            # Correspondance exacte ou inclusion
-            if param_str == value_str or param_str in value_str or value_str in param_str:
-                return True
-            # Correspondance dans les listes (ex: participants)
-            if isinstance(param_value, list):
-                for item in param_value:
-                    if normalize_unicode(str(item)) == value_str:
-                        return True
+            # Égalité après normalisation, appartenance pour les listes.
+            # L'ancienne règle acceptait aussi l'inclusion de sous-chaîne dans
+            # les deux sens : `manager@company.com.evil.io` héritait de
+            # `user_intent` dès que le contrat autorisait `manager@company.com`
+            # (audit du camera-ready ICAART 2027, 14/11/2026). Les deux côtés
+            # passent maintenant par la même normalisation par rôle
+            # (`normalize_argument`) avant comparaison.
+            items = param_value if isinstance(param_value, (list, tuple)) else [param_value]
+            for item in items:
+                if item is None:
+                    continue
+                if normalize_argument(argument_name, item) == value_str:
+                    return True
             # Phase 1 : "date" est comparé sémantiquement (ISO vs texte
             # naturel vs slash) en plus de la comparaison de chaîne ci-dessus
             # — même correction que `metrics/field_comparison.py::dates_equal`,

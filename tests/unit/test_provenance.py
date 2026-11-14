@@ -110,3 +110,33 @@ class TestProvenanceTracker:
         tracker = ProvenanceTracker([], intent)
         source = tracker.track_argument("body", "alice@company.com")
         assert source.origin != "user_intent"
+
+
+class TestExactIntentMatch:
+    """Value–intent matching is equality after normalization, membership for lists (camera-ready audit, 14/11/2026)."""
+
+    def _tracker(self, parameters: dict) -> ProvenanceTracker:
+        return ProvenanceTracker([], Intent(action="send_email", parameters=parameters))
+
+    def test_suffix_extension_of_authorized_email_is_not_user_intent(self) -> None:
+        tracker = self._tracker({"recipient": "manager@company.com"})
+        assert tracker.track_argument("recipient", "manager@company.com.evil.io").origin != "user_intent"
+
+    def test_prefix_of_authorized_email_is_not_user_intent(self) -> None:
+        tracker = self._tracker({"recipient": "alice.manager@company.com"})
+        assert tracker.track_argument("recipient", "manager@company.com").origin != "user_intent"
+
+    def test_authorized_email_still_matches_after_normalization(self) -> None:
+        tracker = self._tracker({"recipient": "Manager@Company.com"})
+        assert tracker.track_argument("recipient", "  manager@company.com ").origin == "user_intent"
+
+    def test_list_membership(self) -> None:
+        tracker = self._tracker({"participants": ["alice@company.com", "bob@company.com"]})
+        assert tracker.track_argument("participants", ["bob@company.com"]).origin == "user_intent"
+        assert tracker.track_argument("participants", ["bob@company.com.evil.io"]).origin != "user_intent"
+
+    def test_endpoint_with_extra_path_is_not_user_intent(self) -> None:
+        tracker = self._tracker({"endpoint": "https://api.company.com/metrics"})
+        assert tracker.track_argument("endpoint", "https://api.company.com/metrics").origin == "user_intent"
+        assert (tracker.track_argument("endpoint", "https://api.company.com/metrics.evil.io").origin
+                != "user_intent")
