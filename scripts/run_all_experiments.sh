@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # ============================================================
+# OBSOLETE: does not reproduce the ICAART 2027 paper (needs an API key and
+# regenerates the data). Use: bash artifact/scripts/run_all.sh --offline
+# ============================================================
 # run_all_experiments.sh
 # Reproduit l'intégralité des expériences IntentFlow pour ICAART 2027
 #

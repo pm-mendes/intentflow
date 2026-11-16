@@ -45,8 +45,9 @@ extraction with reduced coverage but same security properties):
 poetry run python -m intentflow.data.generator                          # generate synthetic tasks/docs
 poetry run python -m intentflow.experiments.run_baseline --baseline B6  # run one baseline
 poetry run python -m intentflow.experiments.compute_metrics             # aggregate metrics.csv from JSONL logs
-bash scripts/run_all_experiments.sh                                     # full repro (data/results/metrics.csv)
-bash artifact/scripts/run_all.sh --quick|--offline|--with-llm           # artifact repro modes (README-facing)
+bash artifact/scripts/run_all.sh --offline                              # reproduces every controlled result of the paper (no API key)
+# scripts/run_all_experiments.sh is obsolete: it needs an API key, regenerates the data and does not
+# reproduce the paper's tables.
 ```
 
 Numerous one-off experiment entry points live under `src/intentflow/experiments/` (e.g.
@@ -55,8 +56,8 @@ Numerous one-off experiment entry points live under `src/intentflow/experiments/
 module producing JSONL decision logs under `data/results/`. Check `artifact/scripts/run_all.sh` for the
 current canonical list and order when adding a new one.
 
-Offline mode (no OpenAI key) works for everything except that B4/B6 degrade to heuristic intent
-extraction: `OPENAI_API_KEY="" bash scripts/run_all_experiments.sh`.
+To reproduce the paper, use `bash artifact/scripts/run_all.sh --offline` (oracle intent, no API key), then
+`scripts/check_paper_numbers.py`; see the README.
 
 ## Architecture
 

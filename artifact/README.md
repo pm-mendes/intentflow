@@ -102,6 +102,14 @@ Hosted decoding is not deterministic: re-running these gives different logs.
   it is equal to an authorized value after role-specific normalization (membership for lists). The
   submitted version also accepted substring inclusion, so `manager@company.com.evil.io` matched a contract
   authorizing `manager@company.com`. The fix changes none of the paper's decisions (see `CHANGELOG.md`).
+- **Request-text rule.** When a value does not match the intent contract, the provenance tracker
+  (`provenance/tracker.py::track_argument`, step 2) labels it `user_intent`, with confidence 0.9, if it
+  appears anywhere in the text of the user's request. This holds for any field, and the rule runs before
+  the documents are consulted, so it applies even when an injected document contains the value. Under
+  IF-Hardened, `ager@company.com` therefore passes when the request says `manager@company.com`, and
+  `legal-team@company.com` passes when the request says "not to legal-team@company.com". The rule is kept
+  in the cited version: without it, IF-Hardened executes 183 of the 200 Bench-v2 benign tasks instead of
+  200 (and 22 attacks instead of 24). The paper describes it as a limitation of the prototype.
 - **Injection labels.** The provenance tracker takes the benchmark's `is_injected` flag (Section 4 of the
   paper).
 - **Disambiguation-v2 labels.** In `dv2_attacked_020` and `dv2_attacked_024`, the reference contract wrongly

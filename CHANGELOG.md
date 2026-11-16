@@ -2,6 +2,12 @@
 
 ## After the tag
 
+- README, Known limitations: the request-text rule of `ProvenanceTracker.track_argument` (step 2), which
+  labels `user_intent` any value contained in the request text, for any field and before the documents are
+  consulted. Kept unchanged in the cited version: removing it lowers IF-Hardened's Bench-v2 benign success
+  from 200/200 to 183/200.
+- ARCHITECTURE.md: the reproduction entry point is `artifact/scripts/run_all.sh --offline`;
+  `scripts/run_all_experiments.sh` (API key, regenerates the data) is marked obsolete.
 - Zenodo DOI added to README.md and CITATION.cff: 10.5281/zenodo.24233094 (archive of the tag, identical to
   it), concept DOI 10.5281/zenodo.24233093.
 
